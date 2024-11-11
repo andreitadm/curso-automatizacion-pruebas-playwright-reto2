@@ -26,7 +26,7 @@ test('Limpiar el input de busqueda', async ({ page }) => {
 
   await searchBox.fill('somerandomtext');
 
-  await expect(searchBox).toHaveText("");
+  await expect(searchBox).toHaveAttribute('value','somerandomtext');
 
   await page.getByRole('button', { name: 'Clear the query' }).click();
 
@@ -42,7 +42,7 @@ test('Realizar una busqueda que genere al menos tenga un resultado', async ({ pa
 
   await page.getByPlaceholder('Search docs').fill('havetext');
 
-  expect(searchBox).toHaveText("");
+  await expect(searchBox).toHaveAttribute('value','havetext');
 
   // Verity there are sections in the results
   await page.locator('.DocSearch-Dropdown-Container section').nth(1).waitFor();
